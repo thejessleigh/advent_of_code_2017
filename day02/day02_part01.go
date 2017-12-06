@@ -6,8 +6,9 @@ package main
 
 import (
     "fmt"
-    // "io/ioutil"
-    // "os"
+    "io/ioutil"
+    "os"
+    // "reflect"
     "strconv"
     "strings"
 )
@@ -16,13 +17,13 @@ func checksum(spreadsheet string) (sum int) {
     rows := strings.Split(spreadsheet, "\n")
     sum = 0
     for i := 0; i < len(rows); i++ {
-        row := strings.Split(rows[i], "")
+        row := strings.Split(rows[i], " ")
         greatest := 0
-        least := 10
+        least := 10000000
         for i := 0; i < len(row); i++ {
             num, err := strconv.Atoi(row[i])
             if err != nil {
-                panic(err)
+                continue
             }
             if num > greatest {
                 greatest = num
@@ -38,15 +39,15 @@ func checksum(spreadsheet string) (sum int) {
 
 func main() {
     // test data
-    s := "5195\n753\n2468"
+    s := "5 1 9 5 \n7 5 3 \n2 4 6 8 "
     fmt.Println(checksum(s))
     fmt.Println(checksum(s) == 18)
 
     // actual data
-    // raw_input, err := ioutil.ReadAll(os.Stdin)
-    // if err != nil {
-    //     panic(err)
-    // }
-    // string_input := string(raw_input)
-    // fmt.Println(checksum(string_input))
+    rawInput, err := ioutil.ReadAll(os.Stdin)
+    if err != nil {
+        panic(err)
+    }
+    stringInput := string(rawInput)
+    fmt.Println(checksum(stringInput))
 }
