@@ -1,14 +1,10 @@
 package main
 
-// Advent of Code Day 1
-// Review a sequence of digits and find the sum of all the digits
-// that match the next digit in the list. The list is circuluar.
-// The digit after the last digit is the first digit in the list.
-
 import (
 	"container/ring"
 	"fmt"
 	"io/ioutil"
+	"os"
 	"strconv"
 	"strings"
 )
@@ -42,7 +38,7 @@ func main() {
 	fmt.Println(captcha("91212129") == 9)
 
 	// actual puzzle input
-	raw_input, err := ioutil.ReadFile("part_one_input.txt")
+	raw_input, err := ioutil.ReadAll(os.Stdin)
 	if err != nil {
 		panic(err)
 	}
