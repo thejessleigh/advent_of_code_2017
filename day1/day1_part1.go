@@ -10,7 +10,9 @@ import (
     "strconv"
     "strings"
     "container/ring"
+    "io/ioutil"
 )
+
 
 func captcha(x string) (sum int){
     list := strings.Split(x, "")
@@ -39,4 +41,12 @@ func main() {
     fmt.Println(captcha("1111") == 4)
     fmt.Println(captcha("1234") == 0)
     fmt.Println(captcha("91212129") == 9)
+
+    // actual puzzle input
+    raw_input, err := ioutil.ReadFile("part_one_input.txt")
+    if err != nil {
+        panic(err)
+    }
+    string_input := string(raw_input)
+    fmt.Println(captcha(string_input))
 }
