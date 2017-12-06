@@ -12,8 +12,8 @@ import (
     "container/ring"
 )
 
-func captcha(x int) (sum int){
-    list := strings.Split(strconv.Itoa(x), "")
+func captcha(x string) (sum int){
+    list := strings.Split(x, "")
     r := ring.New(len(list))
     for i := 0; i < r.Len(); i++ {
         num, err := strconv.Atoi(list[i])
@@ -35,8 +35,8 @@ func captcha(x int) (sum int){
 
 func main() {
     // testing input from problem description
-    fmt.Println(captcha(1122) == 3)
-    fmt.Println(captcha(1111) == 4)
-    fmt.Println(captcha(1234) == 0)
-    fmt.Println(captcha(91212129) == 9)
+    fmt.Println(captcha("1122") == 3)
+    fmt.Println(captcha("1111") == 4)
+    fmt.Println(captcha("1234") == 0)
+    fmt.Println(captcha("91212129") == 9)
 }
